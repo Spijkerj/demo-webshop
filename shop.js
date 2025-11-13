@@ -18,7 +18,14 @@ function getBasket() {
 
 function addToBasket(product) {
   const basket = getBasket();
-  basket.push(product);
+  const existingItem = basket.find((item) => item.name === product);
+
+  if (existingItem) {
+    existingItem.quantity += 1;
+  } else {
+    cart.push({ name: product, quantity: 1 });
+  }
+
   localStorage.setItem("basket", JSON.stringify(basket));
 }
 
